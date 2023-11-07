@@ -4,12 +4,12 @@ AirBnb clone project base file
 """
 import uuid
 import datetime
+import json
 
 class BaseModel():
     """
     BaseModel that defines all common attributes/methods for other classes
     """
-    
     
     def __init__(self):
         """
@@ -27,7 +27,7 @@ class BaseModel():
         """
         a friendly string representation of the class
         """
-        return "[{}] ({}) {}".format(self.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """
@@ -41,8 +41,8 @@ class BaseModel():
         returns a dictionary containing all keys/values of __dict__ of the instance
         """
         my_dict = self.__dict__
-        my_dict[__class__] = self.__name__
-        my_dict[created_at] = self.created_at.isoformat()
-        my_dict[updated_at] = self.updated_at.isoformat()
+        my_dict["__class__"] = self.__class__.__name__
+        my_dict["created_at"] = self.created_at.isoformat()
+        my_dict["updated_at"] = self.updated_at.isoformat()
         return my_dict
 
