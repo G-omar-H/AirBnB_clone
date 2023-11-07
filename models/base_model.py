@@ -3,15 +3,16 @@
 AirBnb clone project base file
 """
 import uuid
-import datetime
+from datetime import datetime
 import json
 
 class BaseModel():
     """
     BaseModel that defines all common attributes/methods for other classes
     """
+   
     
-    def __init__(self):
+    def __init__(self, *args, **kwargs): 
         """
         initializing BaseModel public attributes
         args:
@@ -19,10 +20,18 @@ class BaseModel():
             @created_at: assign the current datetime when aninstance is created
             @updated_at: assign the current datetime when an instance is updated
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
-
+        if len(kwargs) != 0:
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    if key in ["created_at", "updated_at"] and isinstance(key, str):
+                        setattr(self, key, datetime.fromisoformat(value))
+                    else:
+                        setattr(self, key, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+    
     def __str__(self):
         """
         a friendly string representation of the class
@@ -33,7 +42,7 @@ class BaseModel():
         """
         update the updated_at field when modification applyed to a class object instance
         """
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
         return self.updated_at
 
     def to_dict(self):
