@@ -4,7 +4,7 @@ AirBnb clone project base file
 """
 import uuid
 from datetime import datetime
-import json
+import models
 
 class BaseModel():
     """
@@ -29,9 +29,8 @@ class BaseModel():
                         setattr(self, key, value)
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
-    
+            self.created_at = self.updated_at = datetime.now()
+
     def __str__(self):
         """
         a friendly string representation of the class
@@ -43,7 +42,8 @@ class BaseModel():
         update the updated_at field when modification applyed to a class object instance
         """
         self.updated_at = datetime.now()
-        return self.updated_at
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """
