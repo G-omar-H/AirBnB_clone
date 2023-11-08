@@ -6,13 +6,13 @@ import uuid
 from datetime import datetime
 import models
 
-class BaseModel():
+
+class BaseModel:
     """
     BaseModel that defines all common attributes/methods for other classes
     """
-   
-    
-    def __init__(self, *args, **kwargs): 
+
+    def __init__(self, *args, **kwargs):
         """
         initializing BaseModel public attributes
         args:
@@ -54,4 +54,3 @@ class BaseModel():
         my_dict["created_at"] = self.created_at.isoformat()
         my_dict["updated_at"] = self.updated_at.isoformat()
         return my_dict
-

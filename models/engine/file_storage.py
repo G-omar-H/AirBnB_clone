@@ -7,11 +7,11 @@ import json
 import models
 
 
-class FileStorage():
+class FileStorage:
     """
     class FileStorage that serializes instances to a JSON file and deserializes JSON file to instances
     """
-    
+
     __file_path = "file.json"
     __objects = {}
 
@@ -46,7 +46,7 @@ class FileStorage():
         deserializes the JSON file to __objects (only if the JSON file (__file_path) exists;
             otherwise, do nothing. If the file doesn’t exist, no exception should be raised)
         """
-        
+
         try:
             with open(self.__file_path, "r", encoding="UTF8") as fd:
                 self.__objects = json.load(fd)
