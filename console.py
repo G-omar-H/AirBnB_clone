@@ -10,8 +10,9 @@ class HBNBCommand(cmd.Cmd):
     console class defining for the AirBnb project foundation
     """
 
-    list = ["BaseModel"]
+    cls_dict = {"BaseModel": models.BaseModel}
     prompt = "(hbnb)"
+    dictt = models.storage.all()
 
     def emptyline(self):
         pass
@@ -24,14 +25,13 @@ class HBNBCommand(cmd.Cmd):
         Ex: $ create BaseModel
         """
         if name:
-            print(type(models.BaseModel()).__name__)
-            if name == type(models.BaseModel()).__name__:
-                name = models.BaseModel()
-                name.save()
-                print(name.id)
-            else :
-                print("** class doesn't exist **")
-
+            for key, value in self.cls_dict.items():
+                if name == key:
+                    Pixi = value()
+                    Pixi.save()
+                    print(Pixi.id)
+                else :
+                    print("** class doesn't exist **")
         else:
             print("** class name missing **")
 
@@ -43,16 +43,15 @@ class HBNBCommand(cmd.Cmd):
         """
         args = list(cmd.Cmd.parseline(self, line))
         if args[0] is not None:
-            name = args[0]
-            print(name)
-            if name == type(models.BaseModel()).__name__:
-                if args[1]:
-                    name_id = args[1]
-                    print(name_id)
-                    if name_id == name.__class__.id:
-                        print(name)
-                    else:
-                        print("** no instance found **")
+            if args[0] in self.cls_dict.keys():
+                if args[1] is not None:
+                    name = "{}.{}".format(args[0], args[1])
+                    for key, value in self.dictt.items():
+                        if name == key:
+                            print(value)
+                            break
+                        else:
+                            print("** no instance found **")
                 else:
                     print("** instance id missing **")
             else:
