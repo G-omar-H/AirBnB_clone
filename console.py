@@ -48,10 +48,12 @@ class HBNBCommand(cmd.Cmd):
                     name = "{}.{}".format(args[0], args[1])
                     for key, value in self.dictt.items():
                         if name == key:
+                            flag = 1
                             print(value)
                             break
-                        else:
-                            print("** no instance found **")
+                        flag = 0
+                    if flag == 0:
+                        print("** no instance found **")
                 else:
                     print("** instance id missing **")
             else:
