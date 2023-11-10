@@ -12,7 +12,14 @@ class HBNBCommand(cmd.Cmd):
     console class defining for the AirBnb project foundation
     """
 
-    cls_dict = {"BaseModel": models.BaseModel}
+    cls_dict = {
+        "BaseModel": models.BaseModel,
+        "State": models.State,
+        "City": models.City,
+        "Amenity": models.Amenity,
+        "Place": models.Place,
+        "Review": models.Review,
+        }
     prompt = "(hbnb) "
     obj_dict = models.storage.all()
 
@@ -32,7 +39,10 @@ class HBNBCommand(cmd.Cmd):
                     Pixi = value()
                     Pixi.save()
                     print(Pixi.id)
-                else:
+                    flag = 1
+                    break
+                flag = 0
+            if flag == 0:
                     print("** class doesn't exist **")
         else:
             print("** class name missing **")
