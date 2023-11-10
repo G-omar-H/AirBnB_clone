@@ -55,7 +55,7 @@ class FileStorage:
         try:
             with open(self.__file_path, "r", encoding="UTF8") as fd:
                 temp = json.load(fd)
-            for key, value in temp.items():
+            for value in temp.values():
                 obj = models.BaseModel(value)
                 self.new(obj)
         except:
