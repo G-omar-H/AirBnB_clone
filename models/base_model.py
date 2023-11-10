@@ -9,7 +9,8 @@ import models
 
 class BaseModel:
     """
-    BaseModel that defines all common attributes/methods for other classes
+    BaseModel that defines all common\
+        attributes/methods for other classes
     """
 
     def __init__(self, *args, **kwargs):
@@ -17,13 +18,16 @@ class BaseModel:
         initializing BaseModel public attributes
         args:
             @id: unique id for each basemodel
-            @created_at: assign the current datetime when aninstance is created
-            @updated_at: assign the current datetime when an instance is updated
+            @created_at: assign the current datetime\
+                when aninstance is created
+            @updated_at: assign the current datetime\
+                when an instance is updated
         """
         if len(kwargs) != 0:
             for key, value in kwargs.items():
                 if key != "__class__":
-                    if key in ["created_at", "updated_at"] and isinstance(key, str):
+                    if key in ["created_at", "updated_at"]\
+                            and isinstance(key, str):
                         setattr(self, key, datetime.fromisoformat(value))
                     else:
                         setattr(self, key, value)
@@ -35,11 +39,13 @@ class BaseModel:
         """
         a friendly string representation of the class
         """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}"\
+            .format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """
-        update the updated_at field when modification applyed to a class object instance
+        update the updated_at field when modification\
+            applyed to a class object instance
         """
         models.storage.new(self)
         self.updated_at = datetime.now()
@@ -47,7 +53,8 @@ class BaseModel:
 
     def to_dict(self):
         """
-        returns a dictionary containing all keys/values of __dict__ of the instance
+        returns a dictionary containing all keys/values\
+            of __dict__ of the instance
         """
         my_dict = self.__dict__.copy()
         my_dict["__class__"] = self.__class__.__name__

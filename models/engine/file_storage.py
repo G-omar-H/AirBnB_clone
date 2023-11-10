@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-convert data into JSON's standard representation of datastructure
+convert data into JSON's standard\
+    representation of datastructure
 and strore into a file
 """
 import json
@@ -9,7 +10,9 @@ import models
 
 class FileStorage:
     """
-    class FileStorage that serializes instances to a JSON file and deserializes JSON file to instances
+    class FileStorage that serializes instances\
+        to a JSON file and\
+            deserializes JSON file to instances
     """
 
     __file_path = "file.json"
@@ -43,8 +46,10 @@ class FileStorage:
 
     def reload(self):
         """
-        deserializes the JSON file to __objects (only if the JSON file (__file_path) exists;
-            otherwise, do nothing. If the file doesn’t exist, no exception should be raised)
+        deserializes the JSON file to __objects\
+            (only if the JSON file (__file_path) exists;
+            otherwise, do nothing. If\
+                the file doesn’t exist, no exception should be raised)
         """
 
         try:
