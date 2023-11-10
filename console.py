@@ -13,7 +13,7 @@ class HBNBCommand(cmd.Cmd):
     """
 
     cls_dict = {"BaseModel": models.BaseModel}
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
     obj_dict = models.storage.all()
 
     def emptyline(self):
@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
                     for key, value in self.obj_dict.items():
                         if name == key:
                             flag = 1
-                            del value
+                            del(models.storage.all()[key])
                             models.storage.save()
                             break
                         flag = 0
@@ -90,20 +90,24 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
-    def do_all(self, line):
+    def do_all(self, args):
         """
         Prints all string representation of all instances
         based or not on the class name.
         Ex: $ all BaseModel or $ all
         """
-        if line and line not in self.cls_dict.keys():
-            print("** class doesn't exist **")
-            pass
+        all_list = []
+        if args:
+            if args not in self.cls_dict:
+                print("** class doesn't exist **")
+                return
+            for k, v in models.storage.all().items():
+                if args == type(v).__name__:
+                    all_list.append(str(v))
         else:
-            all_list = []
-            for value in self.obj_dict.values():
-                all_list.append(value.__str__())
-            print(all_list)
+            for key, value in self.obj_dict.items():
+                all_list.append(str(value))    
+        print(all_list)
 
     def do_update(self, line):
         """
@@ -113,7 +117,6 @@ class HBNBCommand(cmd.Cmd):
         Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".
         """
         args = line.split(" ")
-        print(args)
         if len(args) > 0:
             if args[0] in self.cls_dict.keys():
                 if len(args) > 1:
@@ -121,7 +124,6 @@ class HBNBCommand(cmd.Cmd):
                     for key, value in self.obj_dict.items():
                         if name == key:
                             name_value = value
-                            print(name_value)
                             flag = 1
                             break
                         flag = 0
@@ -130,8 +132,8 @@ class HBNBCommand(cmd.Cmd):
                         return
                     if len(args) > 2:
                         if len(args) > 3:
-                            setattr(name_value, args[2], args[3])
-                            models.storage.save()
+                            setattr(name_value, args[2], args[3][1:-1])
+                            name_value.save()
                         else:
                             print("** value missing **")
                     else:
