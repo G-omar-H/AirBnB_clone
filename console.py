@@ -106,7 +106,15 @@ class HBNBCommand(cmd.Cmd):
         else:
             for key, value in self.obj_dict.items():
                 all_list.append(str(value))
-        print(all_list)
+        print(all_list) 
+
+    def isfloat(self, num):
+        try:
+            float(num)
+            return True
+        except ValueError:
+            return False
+
 
     def do_update(self, line):
         """
@@ -134,7 +142,12 @@ class HBNBCommand(cmd.Cmd):
                             if args[3][0] in ["'", '"'] and args[3][-1] in ["'", '"']: 
                                 setattr(name_value, args[2], args[3][1:-1])
                             else:
-                                setattr(name_value, args[2], args[3])
+                                if args[3].isdigit():
+                                    setattr(name_value, args[2], int(args[3]))
+                                elif self.isfloat(args[3]):
+                                    setattr(name_value, args[2], float(args[3]))
+                                else:
+                                    setattr(name_value, args[2], args[3])
                             name_value.save()
                         else:
                             print("** value missing **")
