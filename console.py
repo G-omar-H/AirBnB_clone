@@ -17,7 +17,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         pass
-
+        
     def do_create(self, name):
         """
         Creates a new instance of BaseModel,
@@ -155,7 +155,7 @@ class HBNBCommand(cmd.Cmd):
                         else:
                             print("** value missing **")
                     else:
-                        print(" ** attribute name missing **")
+                        print("** attribute name missing **")
                 else:
                     print("** instance id missing **")
             else:
