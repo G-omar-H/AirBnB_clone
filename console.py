@@ -127,7 +127,6 @@ class HBNBCommand(cmd.Cmd):
         """
         arglist = line.split(" ")
         args = [arg for arg in arglist if arg != ""]
-        print(args)
         if line:
             if args[0] in self.cls_dict.keys():
                 if len(args) > 1:
