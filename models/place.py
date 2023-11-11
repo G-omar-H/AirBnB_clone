@@ -2,10 +2,10 @@
 """
 AirBnb clone project place file
 """
-from models import BaseModel
+import models
 
 
-class Place(BaseModel):
+class Place(models.BaseModel):
 	"""
 	Place class that inherits from BaseModel
 	"""
@@ -21,9 +21,3 @@ class Place(BaseModel):
 	latitude = 0
 	longitude = 0
 	amenity_ids = []
-
-	def __init__(self):
-		"""
-		Place initialiser
-		"""
-		super().__init__(self)

@@ -2,18 +2,12 @@
 """
 AirBnb clone project amenity file
 """
-from models import BaseModel
+import models
 
 
-class Amenity(BaseModel):
+class Amenity(models.BaseModel):
 	"""
 	Amenity class that inherits from BaseModel
 	"""
 
 	name = ""
-
-	def __init__(self):
-		"""
-		Amenity initialiser
-		"""
-		super().__init__(self)

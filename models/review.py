@@ -2,10 +2,10 @@
 """
 AirBnb clone project review file
 """
-from models import BaseModel
+import models
 
 
-class Review(BaseModel):
+class Review(models.BaseModel):
     """
     Review class that inherits from BaseModel
     """
@@ -13,10 +13,4 @@ class Review(BaseModel):
     place_id = ""
     user_id = ""
     text = ""
-
-    def __init__(self):
-        """
-        Review initialiser
-        """
-        super().__init__(self)
     

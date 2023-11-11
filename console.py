@@ -3,7 +3,6 @@
 entry point programme to the command interpreter
 """
 import cmd
-import sys
 import models
 
 
@@ -14,6 +13,7 @@ class HBNBCommand(cmd.Cmd):
 
     cls_dict = {
         "BaseModel": models.BaseModel,
+        "User": models.User,
         "State": models.State,
         "City": models.City,
         "Amenity": models.Amenity,

@@ -2,18 +2,12 @@
 """
 AirBnb clone project state file
 """
-from models import BaseModel
+import models
 
 
-class State(BaseModel):
+class State(models.BaseModel):
 	"""
 	State class that inherits from BaseModel
 	"""
 
 	name = ""
-
-	def __init__(self):
-		"""
-		State initialiser
-		"""
-		super().__init__(self)

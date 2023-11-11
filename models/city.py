@@ -2,19 +2,13 @@
 """
 AirBnb clone project city file
 """
-from models import BaseModel
+import models
 
 
-class City(BaseModel):
+class City(models.BaseModel):
 	"""
 	city class that inherits from BaseModel
 	"""
 
 	name = ""
 	state_id = ""
-
-	def __init__(self):
-		"""
-		city initialiser
-		"""
-		super().__init__(self)
