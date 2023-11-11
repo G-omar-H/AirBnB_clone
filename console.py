@@ -3,7 +3,6 @@
 entry point programme to the command interpreter
 """
 import cmd
-import sys
 import models
 
 
@@ -12,7 +11,7 @@ class HBNBCommand(cmd.Cmd):
     console class defining for the AirBnb project foundation
     """
 
-    cls_dict = {"BaseModel": models.BaseModel}
+    cls_dict = {"BaseModel": models.BaseModel, "User": models.User}
     prompt = "(hbnb) "
     obj_dict = models.storage.all()
 
@@ -32,8 +31,8 @@ class HBNBCommand(cmd.Cmd):
                     Pixi = value()
                     Pixi.save()
                     print(Pixi.id)
-                else:
-                    print("** class doesn't exist **")
+                    return
+            print("** class doesn't exist **")
         else:
             print("** class name missing **")
 

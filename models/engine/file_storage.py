@@ -6,7 +6,7 @@ and strore into a file
 """
 import json
 import models
-
+import re
 
 class FileStorage:
     """
@@ -51,12 +51,15 @@ class FileStorage:
             otherwise, do nothing. If\
                 the file doesn’t exist, no exception should be raised)
         """
-
+        cls_dict = {"BaseModel": models.BaseModel, "User": models.User}
         try:
             with open(self.__file_path, "r", encoding="UTF8") as fd:
                 temp = json.load(fd)
-            for value in temp.values():
-                obj = models.BaseModel(**value)
+            for key, value in temp.items():
+                key_pattern = re.compile(r'^([^.]+).')
+                match = key_pattern.match(key)
+                cls_name = match.group(1)
+                obj = cls_dict[cls_name](**value)
                 self.new(obj)
         except IOError:
             pass
