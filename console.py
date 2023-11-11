@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
         Ex: $ destroy BaseModel 1234-1234-1234.
         """
         args = line.split(" ")
-        if len(args) > 0:
+        if line:
             if args[0] in self.cls_dict.keys():
                 if len(args) > 1:
                     name = "{}.{}".format(args[0], args[1])
@@ -116,7 +116,7 @@ class HBNBCommand(cmd.Cmd):
         Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".
         """
         args = line.split(" ")
-        if len(args) > 0:
+        if line:
             if args[0] in self.cls_dict.keys():
                 if len(args) > 1:
                     name = "{}.{}".format(args[0], args[1])
