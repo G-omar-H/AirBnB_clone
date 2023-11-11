@@ -7,6 +7,10 @@ and strore into a file
 import json
 import models
 import re
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/pixi
 
 
 class FileStorage:
@@ -52,12 +56,29 @@ class FileStorage:
             otherwise, do nothing. If\
                 the file doesn’t exist, no exception should be raised)
         """
+<<<<<<< HEAD
         cls_dict = {"BaseModel": models.BaseModel, "User": models.User}
+=======
+
+        cls_dict = {
+        "BaseModel": models.BaseModel,
+        "User": models.User,
+        "State": models.State,
+        "City": models.City,
+        "Amenity": models.Amenity,
+        "Place": models.Place,
+        "Review": models.Review,
+        }
+>>>>>>> origin/pixi
         try:
             with open(self.__file_path, "r", encoding="UTF8") as fd:
                 temp = json.load(fd)
             for key, value in temp.items():
+<<<<<<< HEAD
                 key_pattern = re.compile(r"^([^.]+).")
+=======
+                key_pattern = re.compile(r'^([^\.]+)\.')
+>>>>>>> origin/pixi
                 match = key_pattern.match(key)
                 cls_name = match.group(1)
                 obj = cls_dict[cls_name](**value)
