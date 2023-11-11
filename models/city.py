@@ -12,3 +12,4 @@ class City(models.BaseModel):
 
 	name = ""
 	state_id = ""
+

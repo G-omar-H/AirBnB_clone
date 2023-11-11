@@ -13,4 +13,3 @@ class Review(models.BaseModel):
     place_id = ""
     user_id = ""
     text = ""
-    
