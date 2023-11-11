@@ -76,7 +76,7 @@ class HBNBCommand(cmd.Cmd):
                     for key, value in self.obj_dict.items():
                         if name == key:
                             flag = 1
-                            del(models.storage.all()[key])
+                            del models.storage.all()[key]
                             models.storage.save()
                             break
                         flag = 0
@@ -105,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
                     all_list.append(str(v))
         else:
             for key, value in self.obj_dict.items():
-                all_list.append(str(value))    
+                all_list.append(str(value))
         print(all_list)
 
     def do_update(self, line):
@@ -131,7 +131,10 @@ class HBNBCommand(cmd.Cmd):
                         return
                     if len(args) > 2:
                         if len(args) > 3:
-                            setattr(name_value, args[2], args[3][1:-1])
+                            if args[3][0] in ["'", '"'] and args[3][-1] in ["'", '"']: 
+                                setattr(name_value, args[2], args[3][1:-1])
+                            else:
+                                setattr(name_value, args[2], args[3])
                             name_value.save()
                         else:
                             print("** value missing **")
