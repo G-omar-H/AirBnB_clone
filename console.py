@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
         Ex: $ show BaseModel 1234-1234-1234.
         """
         args = line.split(" ")
-        if len(args) > 0:
+        if line:
             if args[0] in self.cls_dict.keys():
                 if len(args) > 1:
                     name = "{}.{}".format(args[0], args[1])
