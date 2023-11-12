@@ -124,4 +124,4 @@ class TestBaseModel(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.Test_BaseModel()
+    unittest.main()
