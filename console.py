@@ -141,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
                     name = "{}.{}".format(args[0], args[1])
                     for key, value in self.obj_dict.items():
                         if name == key:
-                            name_value = value
+                            obj_value = value
                             flag = 1
                             break
                         flag = 0
@@ -150,16 +150,17 @@ class HBNBCommand(cmd.Cmd):
                         return
                     if len(args) > 2:
                         if len(args) > 3:
-                            if args[3][0] in ["'", '"'] and args[3][-1] in ["'", '"']:
-                                setattr(name_value, args[2], args[3][1:-1])
+                            if args[3][0] in ["'", '"']\
+                                    and args[3][-1] in ["'", '"']:
+                                setattr(obj_value, args[2], args[3][1:-1])
                             else:
                                 if args[3].isdigit():
-                                    setattr(name_value, args[2], int(args[3]))
+                                    setattr(obj_value, args[2], int(args[3]))
                                 elif self.isfloat(args[3]):
-                                    setattr(name_value, args[2], float(args[3]))
+                                    setattr(obj_value, args[2], float(args[3]))
                                 else:
-                                    setattr(name_value, args[2], args[3])
-                            name_value.save()
+                                    setattr(obj_value, args[2], args[3])
+                            obj_value.save()
                         else:
                             print("** value missing **")
                     else:
