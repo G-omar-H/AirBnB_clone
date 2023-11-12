@@ -5,6 +5,7 @@ AirBnB cloning prototype project
 import models
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
     """
     sub User class inheriting from BaseModel paretn class
