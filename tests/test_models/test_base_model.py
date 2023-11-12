@@ -58,6 +58,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(obj_2.id, self.obj.id)
         self.assertNotEqual(obj_3.id, obj_2)
         self.assertNotEqual(obj_3.id, self.obj)
+        self.assertRegex(
+            self.obj.id,
+            r'^[0-9a-fA-F]{8}-'
+            r'[0-9a-fA-F]{4}-'
+            r'[0-9a-fA-F]{4}-'
+            r'[0-9a-fA-F]{4}-'
+            r'[0-9a-fA-F]{12}$'
+        )
 
     def test_updated_at(self):
         """
