@@ -2,8 +2,12 @@
 """
 AirBnB cloning prototype protect Unittesting...
 """
-import unittest
+
 from models.base_model import BaseModel
+"""
+testing BaseModel class 
+"""
+import unittest
 from datetime import datetime, timedelta
 import re
 
@@ -77,7 +81,6 @@ class TestBaseModel(unittest.TestCase):
         """
         test updated_at BaseModel attribute
         """
-
         obj_temp = BaseModel()
         self.assertTrue(obj_temp.created_at)
         self.assertEqual(obj_temp.updated_at, obj_temp.created_at)
