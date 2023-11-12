@@ -1,15 +1,11 @@
-#!/usr/bin/python3
+
 """
 AirBnB cloning prototype protect Unittesting...
 """
 
 from models.base_model import BaseModel
-"""
-testing BaseModel class 
-"""
 import unittest
 from datetime import datetime, timedelta
-import re
 
 
 class TestBaseModel(unittest.TestCase):
