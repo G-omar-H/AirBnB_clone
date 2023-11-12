@@ -9,6 +9,11 @@ import re
 
 
 class TestBaseModel(unittest.TestCase):
+    """
+    testing BaseModel class
+    inheriting the unittest...
+    """
+
     @classmethod
     def setUpClass(cls):
         """
