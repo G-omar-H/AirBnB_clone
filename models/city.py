@@ -6,10 +6,9 @@ import models
 
 
 class City(models.BaseModel):
-	"""
-	city class that inherits from BaseModel
-	"""
+    """
+    city class that inherits from BaseModel
+    """
 
-	name = ""
-	state_id = ""
-
+    name = ""
+    state_id = ""

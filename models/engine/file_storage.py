@@ -54,21 +54,20 @@ class FileStorage:
         """
 
         cls_dict = {
-        "BaseModel": models.BaseModel,
-        "User": models.User,
-        "State": models.State,
-        "City": models.City,
-        "Amenity": models.Amenity,
-        "Place": models.Place,
-        "Review": models.Review,
+            "BaseModel": models.BaseModel,
+            "User": models.User,
+            "State": models.State,
+            "City": models.City,
+            "Amenity": models.Amenity,
+            "Place": models.Place,
+            "Review": models.Review,
         }
 
         try:
             with open(self.__file_path, "r", encoding="UTF8") as fd:
                 temp = json.load(fd)
             for key, value in temp.items():
-
-                key_pattern = re.compile(r'^([^\.]+)\.')
+                key_pattern = re.compile(r"^([^\.]+)\.")
 
                 match = key_pattern.match(key)
                 cls_name = match.group(1)

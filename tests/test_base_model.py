@@ -5,8 +5,8 @@ AirBnB cloning prototype protect Unittesting...
 import unittest
 from models.base_model import BaseModel
 
-class TestBaseModel(unittest.TestCase):
 
+class TestBaseModel(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """
@@ -21,7 +21,6 @@ class TestBaseModel(unittest.TestCase):
         """
         pass
 
-
     def test_instance(self):
         """
         test class instance creation
@@ -35,7 +34,7 @@ class TestBaseModel(unittest.TestCase):
         obj_2 = BaseModel()
         self.assertNotEqual(self.obj, obj_2)
         self.assertIsNot(self.obj, obj_2)
-    
+
     def test_print_obj(self):
         """
         test string format on an object
@@ -60,7 +59,7 @@ class TestBaseModel(unittest.TestCase):
         """
         test updated_at BaseModel attribute
         """
-        
+
         obj_temp = BaseModel()
         self.assertTrue(obj_temp.created_at)
         self.assertEqual(obj_temp.updated_at, obj_temp.created_at)
@@ -73,6 +72,26 @@ class TestBaseModel(unittest.TestCase):
         """
         obj_temp = BaseModel()
         self.assertTrue(obj_temp.created_at)
+        self.assertEqual(obj_temp.updated_at, obj_temp.created_at)
+        obj_temp.save()
+        self.assertNotEqual(obj_temp.updated_at, obj_temp.created_at)
+
+    def test_save(self):
+        """
+        save class methode  testing...
+        """
+        obj_temp = BaseModel()
+        self.assertTrue(obj_temp)
+        self.assertEqual(obj_temp.updated_at, obj_temp.created_at)
+        obj_temp.save()
+        self.assertNotEqual(obj_temp.updated_at, obj_temp.created_at)
+
+    def test_to_dict(self):
+        """
+        to_dict class methode  testing...
+        """
+        obj_temp = BaseModel()
+        self.assertTrue(obj_temp)
         self.assertEqual(obj_temp.updated_at, obj_temp.created_at)
         obj_temp.save()
         self.assertNotEqual(obj_temp.updated_at, obj_temp.created_at)

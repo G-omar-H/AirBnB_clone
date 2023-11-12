@@ -19,13 +19,13 @@ class HBNBCommand(cmd.Cmd):
         "Amenity": models.Amenity,
         "Place": models.Place,
         "Review": models.Review,
-        }
+    }
     prompt = "(hbnb) "
     obj_dict = models.storage.all()
 
     def emptyline(self):
         pass
-        
+
     def do_create(self, name):
         """
         Creates a new instance of BaseModel,
@@ -117,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             for key, value in self.obj_dict.items():
                 all_list.append(str(value))
-        print(all_list) 
+        print(all_list)
 
     def isfloat(self, num):
         try:
@@ -125,7 +125,6 @@ class HBNBCommand(cmd.Cmd):
             return True
         except ValueError:
             return False
-
 
     def do_update(self, line):
         """
@@ -151,7 +150,7 @@ class HBNBCommand(cmd.Cmd):
                         return
                     if len(args) > 2:
                         if len(args) > 3:
-                            if args[3][0] in ["'", '"'] and args[3][-1] in ["'", '"']: 
+                            if args[3][0] in ["'", '"'] and args[3][-1] in ["'", '"']:
                                 setattr(name_value, args[2], args[3][1:-1])
                             else:
                                 if args[3].isdigit():

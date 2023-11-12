@@ -6,8 +6,8 @@ import models
 
 
 class State(models.BaseModel):
-	"""
-	State class that inherits from BaseModel
-	"""
+    """
+    State class that inherits from BaseModel
+    """
 
-	name = ""
+    name = ""

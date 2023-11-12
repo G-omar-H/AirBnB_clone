@@ -6,10 +6,8 @@ import models
 
 
 class Amenity(models.BaseModel):
-	"""
-	Amenity class that inherits from BaseModel
-	"""
+    """
+    Amenity class that inherits from BaseModel
+    """
 
-	name = ""
-
-	
+    name = ""

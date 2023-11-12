@@ -14,4 +14,3 @@ class User(models.BaseModel):
     password = ""
     first_name = ""
     last_name = ""
-
