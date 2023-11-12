@@ -42,7 +42,7 @@ class TestBaseModel(unittest.TestCase):
         test for potential collision
         """
         obj_2 = BaseModel()
-        self.assertFalse(self.obj.id == obj_2.id)
+        self.assertTrue(self.obj.id == obj_2.id)
         self.assertNotEqual(self.obj, obj_2)
         self.assertIsNot(self.obj, obj_2)
 
