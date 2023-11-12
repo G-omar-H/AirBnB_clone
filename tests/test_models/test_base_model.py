@@ -7,6 +7,7 @@ from models.base_model import BaseModel
 from datetime import datetime, timedelta
 import re
 
+
 class TestBaseModel(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -95,7 +96,6 @@ class TestBaseModel(unittest.TestCase):
         delay = timedelta(days=1)
         timedifference = datetime.now() - self.obj.created_at
         self.assertTrue(timedifference < delay)
-        
 
     def test_save(self):
         """
