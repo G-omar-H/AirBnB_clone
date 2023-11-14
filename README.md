@@ -21,9 +21,14 @@ This repository contains the initial stage of a student project to build a clone
 | 10. Console 1.0 | [console.py](https://github.com/Rachamv/AirBnB_clone_v2/blob/main/console.py) [/models/engine/file_storage.py](https://github.com/Rachamv/AirBnB_clone_v2/blob/main/models/engine/file_storage.py) | Update the console and file storage system to work dynamically with all  classes update file storage |
 <br>
 <br>
+## Authors
+
+- [@Pixi](https://github.com/faty0)
+- [@OGhazi](https://github.com/G-omar-H)
 <a href="https://github.com/G-omar-H/AirBnB_clone/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=G-omar-H/AirBnB_clone" />
 </a>
+
 <center> <h2>General Use</h2> </center>
 
 1. First clone this repository.
