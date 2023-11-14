@@ -149,6 +149,7 @@ class HBNBCommand(cmd.Cmd):
         """
         arglist = line.split(" ")
         args = [arg for arg in arglist if arg != ""]
+        flag = 0
         if line:
             if args[0] in self.cls_dict.keys():
                 if len(args) > 1:
@@ -204,6 +205,7 @@ class HBNBCommand(cmd.Cmd):
         """
         arglist = line.split(" ")
         args = [arg for arg in arglist if arg != ""]
+        flag = 0
         if line:
             if args[0] in self.cls_dict.keys():
                 if len(args) > 1:
