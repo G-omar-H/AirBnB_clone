@@ -24,7 +24,7 @@ This repository contains the initial stage of a student project to build a clone
 
 <center> <h2>Authors</h2> </center>
 
-- [@Pixi](https://github.com/faty0)
+- [@Pixie](https://github.com/faty0)
 - [@OGhazi](https://github.com/G-omar-H)
 <a href="https://github.com/G-omar-H/AirBnB_clone/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=G-omar-H/AirBnB_clone" />
