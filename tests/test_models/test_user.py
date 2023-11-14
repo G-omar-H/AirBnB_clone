@@ -14,7 +14,7 @@ from models.user import User
 from models.engine.file_storage import FileStorage
 
 
-class TestUser(unittest.TestCase):
+class Test_User(unittest.TestCase):
     """ Declares TestUser class """
 
     def setUp(self):
@@ -44,13 +44,13 @@ class TestUser(unittest.TestCase):
         if path.exists("file.json"):
             remove("file.json")
 
-    def test_pep8_conformance(self):
+    def test_pep8(self):
         """ Test that User conforms to PEP8 standards """
-        pep8style = pycodestyle.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/user.py'])
+        pyco = pycodestyle.StyleGuide(quiet=True)
+        result = pyco.check_files(['models/user.py'])
         self.assertEqual(result.total_errors, 0, "Errors (and warnings).")
 
-    def test_class_method_presence(self):
+    def test_class_method(self):
         """ Test that the User methods are defined """
         u = dir(User)
         self.assertIn('__init__', u)
@@ -58,7 +58,7 @@ class TestUser(unittest.TestCase):
         self.assertIn('save', u)
         self.assertIn('__str__', u)
 
-    def test_class_attribute_presence(self):
+    def test_class_attribute(self):
         """ Test that the User attributes are declared """
         u = dir(User)
         self.assertIn('email', u)
@@ -66,7 +66,7 @@ class TestUser(unittest.TestCase):
         self.assertIn('first_name', u)
         self.assertIn('last_name', u)
 
-    def test_instance_method_presence(self):
+    def test_instance_method(self):
         """Test that the User instance has the same methods"""
         u = dir(User())
         self.assertIn('__init__', u)
@@ -74,7 +74,7 @@ class TestUser(unittest.TestCase):
         self.assertIn('to_dict', u)
         self.assertIn('__str__', u)
 
-    def test_instance_attribute_presence(self):
+    def test_instance_attribute(self):
         """Test that the User instance attributes are declared"""
         u = dir(User())
         self.assertIn('id', u)
@@ -86,7 +86,7 @@ class TestUser(unittest.TestCase):
         self.assertIn('first_name', u)
         self.assertIn('last_name', u)
 
-    def test_docstring_presence(self):
+    def test_docstring(self):
         """Test that docstring is present
         in Module, Class, and methods"""
         self.assertIsNot(user.__doc__, None)
@@ -161,23 +161,23 @@ class TestUser(unittest.TestCase):
     def test_to_dict(self):
         """Test to_dict method call"""
 
-        us = User()
-        us.age = 32
-        us.size = "Short"
-        for k, v in us.__dict__.items():
+        ins = User()
+        ins.age = 32
+        ins.size = "Short"
+        for k, v in ins.__dict__.items():
             if k != 'updated_at' and k != 'created_at':
-                self.assertIn(k, us.to_dict())
-                self.assertEqual(v, us.to_dict()[k])
-        self.assertEqual(us.to_dict()['__class__'], us.__class__.__name__)
-        self.assertEqual(us.to_dict()['updated_at'], us.updated_at.isoformat())
-        self.assertEqual(us.to_dict()['created_at'], us.created_at.isoformat())
-        self.assertEqual(us.to_dict()['age'], 32)
-        self.assertEqual(us.to_dict()['size'], 'Short')
-        self.assertIsInstance(us.to_dict(), dict)
+                self.assertIn(k, ins.to_dict())
+                self.assertEqual(v, ins.to_dict()[k])
+        self.assertEqual(ins.to_dict()['__class__'], ins.__class__.__name__)
+        self.assertEqual(ins.to_dict()['updated_at'],ins.updated_at.isoformat())
+        self.assertEqual(ins.to_dict()['created_at'],ins.created_at.isoformat())
+        self.assertEqual(ins.to_dict()['age'], 32)
+        self.assertEqual(ins.to_dict()['size'], 'Short')
+        self.assertIsInstance(ins.to_dict(), dict)
 
     def test_str(self):
         """Test __str__ method"""
 
-        u = User()
-        string = '['+u.__class__.__name__+']'+' ('+u.id+') '+str(u.__dict__)
-        self.assertEqual(string, u.__str__())
+        ins = User()
+        string = '['+ins.__class__.__name__+']'+' ('+ins.id+') '+str(ins.__dict__)
+        self.assertEqual(string, ins.__str__())

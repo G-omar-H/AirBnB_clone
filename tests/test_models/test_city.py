@@ -28,13 +28,13 @@ class test_City(test_basemodel):
         self.assertEqual(type(new.name), str)
 
 
-class Test_PEP8(unittest.TestCase):
+class Test_PYCO(unittest.TestCase):
     """test User"""
 
-    def test_pep8_user(self):
+    def test_pyco_user(self):
         """test pep8 style"""
-        pep8style = pycodestyle.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/city.py'])
+        pyco = pycodestyle.StyleGuide(quiet=True)
+        result = pyco.check_files(['models/city.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
@@ -61,7 +61,7 @@ class TestCity(unittest.TestCase):
         except Exception:
             pass
 
-    def test_checking_for_docstring_City(self):
+    def test_for_docstring_City(self):
         """checking for docstrings"""
         self.assertIsNotNone(City.__doc__)
 

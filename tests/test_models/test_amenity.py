@@ -30,10 +30,10 @@ class test_Amenity(test_basemodel):
 
 class Test_PEP8(unittest.TestCase):
     """test User"""
-    def test_pep8_user(self):
+    def test_pyco_user(self):
         """test pep8 style"""
-        pep8style = pycodestyle.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/amenity.py'])
+        pyco = pycodestyle.StyleGuide(quiet=True)
+        result = pyco.check_files(['models/amenity.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
@@ -42,26 +42,26 @@ class test_inherit_basemodel(unittest.TestCase):
     """Test if user inherit from BaseModel"""
     def test_instance(self):
         """check if user is an instance of BaseModel"""
-        user = Amenity()
-        self.assertIsInstance(user, Amenity)
-        self.assertTrue(issubclass(type(user), BaseModel))
-        self.assertEqual(str(type(user)), "<class 'models.amenity.Amenity'>")
+        ins = Amenity()
+        self.assertIsInstance(ins, Amenity)
+        self.assertTrue(issubclass(type(ins), BaseModel))
+        self.assertEqual(str(type(ins)), "<class 'models.amenity.Amenity'>")
 
 
 class test_Amenity_BaseModel(unittest.TestCase):
     """Testing user class"""
     def test_instances(self):
         with patch('models.amenity'):
-            instance = Amenity()
-            self.assertEqual(type(instance), Amenity)
-            instance.name = "Barbie"
+            ins = Amenity()
+            self.assertEqual(type(ins), Amenity)
+            ins.name = "Barbie"
             expectec_attrs_types = {
                     "id": str,
                     "created_at": datetime,
                     "updated_at": datetime,
                     "name": str,
                     }
-            inst_dict = instance.to_dict()
+            inst_dict = ins.to_dict()
             expected_dict_attrs = [
                     "id",
                     "created_at",
@@ -75,9 +75,9 @@ class test_Amenity_BaseModel(unittest.TestCase):
 
             for attr, types in expectec_attrs_types.items():
                 with self.subTest(attr=attr, typ=types):
-                    self.assertIn(attr, instance.__dict__)
-                    self.assertIs(type(instance.__dict__[attr]), types)
-            self.assertEqual(instance.name, "Barbie")
+                    self.assertIn(attr, ins.__dict__)
+                    self.assertIs(type(ins.__dict__[attr]), types)
+            self.assertEqual(ins.name, "Barbie")
 
     def test_user_id_and_createat(self):
         """testing id for every user"""
@@ -147,12 +147,12 @@ class TestAmenity(unittest.TestCase):
 
     def test_to_dict_creates_dict(self):
         """test to_dict method creates a dictionary with proper attrs"""
-        am = Amenity()
-        print(am.__dict__)
-        new_d = am.to_dict()
+        ins = Amenity()
+        print(ins.__dict__)
+        new_d = ins.to_dict()
         self.assertEqual(type(new_d), dict)
         self.assertFalse("_sa_instance_state" in new_d)
-        for attr in am.__dict__:
+        for attr in ins.__dict__:
             if attr is not "_sa_instance_state":
                 self.assertTrue(attr in new_d)
         self.assertTrue("__class__" in new_d)
@@ -160,13 +160,13 @@ class TestAmenity(unittest.TestCase):
     def test_to_dict_values(self):
         """test that values in dict returned from to_dict are correct"""
         t_format = "%Y-%m-%dT%H:%M:%S.%f"
-        am = Amenity()
-        new_d = am.to_dict()
+        ins = Amenity()
+        new_d = ins.to_dict()
         self.assertEqual(new_d["__class__"], "Amenity")
         self.assertEqual(type(new_d["created_at"]), str)
         self.assertEqual(type(new_d["updated_at"]), str)
-        self.assertEqual(new_d["created_at"], am.created_at.strftime(t_format))
-        self.assertEqual(new_d["updated_at"], am.updated_at.strftime(t_format))
+        self.assertEqual(new_d["created_at"], ins.created_at.strftime(t_format))
+        self.assertEqual(new_d["updated_at"], ins.updated_at.strftime(t_format))
 
     def test_str(self):
         """test that the str method has the correct output"""

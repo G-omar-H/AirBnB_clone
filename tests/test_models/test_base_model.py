@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """ """
-from models.base_model import BaseModel
 import unittest
 import datetime
-from uuid import UUID
+import pycodestyle
 import json
 import os
-import pycodestyle
+from models.base_model import BaseModel
+from uuid import UUID
 
 
 class test_basemodel(unittest.TestCase):
@@ -19,13 +19,13 @@ class test_basemodel(unittest.TestCase):
         self.value = BaseModel
     """
     A class to test pep8 on base_model file"""
-    def test_pycodestyle(self):
+    def test_pyco(self):
         """
         Test pep8 format
         """
-        pycostyle = pycodestyle.StyleGuide(quiet=True)
-        result = pycostyle.check_files(['models/base_model.py'])
-        self.assertEqual(result.total_errors, 0,
+        pyco = pycodestyle.StyleGuide(quiet=True)
+        income = pyco.check_files(['models/base_model.py'])
+        self.assertEqual(income.total_errors, 0,
                          "Found code style errors (and warnings).")
 
     def setUp(self):
@@ -40,50 +40,50 @@ class test_basemodel(unittest.TestCase):
 
     def test_default(self):
         """ """
-        i = self.value()
-        self.assertEqual(type(i), self.value)
+        temp = self.value()
+        self.assertEqual(type(temp), self.value)
 
     def test_kwargs(self):
         """ """
-        i = self.value()
-        copy = i.to_dict()
+        temp = self.value()
+        copy = temp.to_dict()
         new = BaseModel(**copy)
-        self.assertFalse(new is i)
+        self.assertFalse(new is temp)
 
     def test_kwargs_int(self):
         """ """
-        i = self.value()
-        copy = i.to_dict()
+        temp = self.value()
+        copy = temp.to_dict()
         copy.update({1: 2})
         with self.assertRaises(TypeError):
             new = BaseModel(**copy)
 
     def test_save(self):
         """ Testing save """
-        i = self.value()
-        i.save()
-        key = self.name + "." + i.id
+        temp = self.value()
+        temp.save()
+        key = self.name + "." + temp.id
         with open('file.json', 'r') as f:
             j = json.load(f)
-            self.assertEqual(j[key], i.to_dict())
+            self.assertEqual(j[key], temp.to_dict())
 
     def test_str(self):
         """ """
-        i = self.value()
-        self.assertEqual(str(i), '[{}] ({}) {}'.format(self.name, i.id,
-                         i.__dict__))
+        temp = self.value()
+        self.assertEqual(str(temp), '[{}] ({}) {}'.format(self.name, temp.id,
+                         temp.__dict__))
 
-    def test_todict(self):
+    def test_to_dict(self):
         """ """
-        i = self.value()
-        n = i.to_dict()
-        self.assertEqual(i.to_dict(), n)
+        temp = self.value()
+        n = temp.to_dict()
+        self.assertEqual(temp.to_dict(), n)
 
     def test_kwargs_none(self):
         """ """
-        n = {None: None}
+        obj_dict = {None: None}
         with self.assertRaises(TypeError):
-            new = self.value(**n)
+            new = self.value(**obj_dict)
 
     # def test_kwargs_one(self):
     #     """ """
@@ -93,38 +93,38 @@ class test_basemodel(unittest.TestCase):
 
     def test_id(self):
         """ """
-        new = self.value()
-        self.assertEqual(type(new.id), str)
+        obj = self.value()
+        self.assertEqual(type(obj.id), str)
 
     def test_created_at(self):
         """ """
-        new = self.value()
-        self.assertEqual(type(new.created_at), datetime.datetime)
+        obj = self.value()
+        self.assertEqual(type(obj.created_at), datetime.datetime)
 
     def test_updated_at(self):
         """ """
-        new = self.value()
-        self.assertEqual(type(new.updated_at), datetime.datetime)
-        n = new.to_dict()
-        new = BaseModel(**n)
-        self.assertTrue(new.created_at == new.updated_at)
+        obj = self.value()
+        self.assertEqual(type(obj.updated_at), datetime.datetime)
+        obj_dict = obj.to_dict()
+        obj = BaseModel(**obj_dict)
+        self.assertTrue(obj.created_at == obj.updated_at)
 
     def test_uuid(self):
         """
         Testin UUID
         """
-        instance1 = BaseModel()
-        instance2 = BaseModel()
-        instance3 = BaseModel()
-        list_instances = [instance1, instance2,
-                          instance3]
-        for instance in list_instances:
-            ins_uuid = instance.id
+        ins1 = BaseModel()
+        ins2 = BaseModel()
+        ins3 = BaseModel()
+        list_instances = [ins1, ins2,
+                          ins3]
+        for ins in list_instances:
+            ins_uuid = ins.id
             with self.subTest(uuid=ins_uuid):
                 self.assertIs(type(ins_uuid), str)
-        self.assertNotEqual(instance1.id, instance2.id)
-        self.assertNotEqual(instance1.id, instance3.id)
-        self.assertNotEqual(instance2.id, instance3.id)
+        self.assertNotEqual(ins1.id, ins2.id)
+        self.assertNotEqual(ins1.id, ins3.id)
+        self.assertNotEqual(ins2.id, ins3.id)
 
     def test_str_method(self):
         """Testing returns STR method"""
@@ -141,8 +141,8 @@ class TestCodeFormat(unittest.TestCase):
         """
         Test pep8 format
         """
-        pycostyle = pycodestyle.StyleGuide(quiet=True)
-        result = pycostyle.check_files(['models/base_model.py'])
+        pyco = pycodestyle.StyleGuide(quiet=True)
+        result = pyco.check_files(['models/base_model.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
@@ -157,14 +157,14 @@ class TestBaseModel(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """setup for the test"""
-        cls.base = BaseModel()
-        cls.base.name = "Kev"
-        cls.base.num = 20
+        cls.ins = BaseModel()
+        cls.ins.name = "Kev"
+        cls.ins.num = 20
 
     @classmethod
     def teardown(cls):
         """at the end of the test this will tear it down"""
-        del cls.base
+        del cls.ins
 
     def tearDown(self):
         """teardown"""
@@ -189,19 +189,19 @@ class TestBaseModel(unittest.TestCase):
 
     def test_init_BaseModel(self):
         """test if the base is an type BaseModel"""
-        self.assertTrue(isinstance(self.base, BaseModel))
+        self.assertTrue(isinstance(self.ins, BaseModel))
 
     def test_save_BaesModel(self):
         """test if the save works"""
-        self.base.save()
-        self.assertNotEqual(self.base.created_at, self.base.updated_at)
+        self.ins.save()
+        self.assertNotEqual(self.ins.created_at, self.ins.updated_at)
 
     def test_to_dict_BaseModel(self):
         """test if dictionary works"""
-        base_dict = self.base.to_dict()
-        self.assertEqual(self.base.__class__.__name__, 'BaseModel')
-        self.assertIsInstance(base_dict['created_at'], str)
-        self.assertIsInstance(base_dict['updated_at'], str)
+        ins_dict = self.ins.to_dict()
+        self.assertEqual(self.ins.__class__.__name__, 'BaseModel')
+        self.assertIsInstance(ins_dict['created_at'], str)
+        self.assertIsInstance(ins_dict['updated_at'], str)
 
 
 if __name__ == "__main__":
