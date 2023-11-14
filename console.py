@@ -141,6 +141,17 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
+    def do_count(self, arg):
+        """
+        count number of instances if a class
+        """
+        count = 0
+        for k, v in self.obj_dict.items():
+            name = k.split(".")[0]
+            if arg == name:
+                count += 1
+        print(count)
+
     def do_destroy(self, line):
         """
         destroy: Deletes an instance based on the class name and id
